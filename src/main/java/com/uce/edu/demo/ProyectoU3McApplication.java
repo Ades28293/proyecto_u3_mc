@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.demo.repository.modelo.Hotel;
 import com.uce.edu.demo.service.IHotelService;
+import com.uce.edu.demo.tarea.repository.modelo.Factura;
+import com.uce.edu.demo.tarea.service.IFacturaService;
 
 @SpringBootApplication
 public class ProyectoU3McApplication implements CommandLineRunner {
@@ -17,6 +19,9 @@ public class ProyectoU3McApplication implements CommandLineRunner {
 
 	@Autowired
 	private IHotelService hotelService;
+	
+	@Autowired
+	private IFacturaService facturaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU3McApplication.class, args);
@@ -26,7 +31,7 @@ public class ProyectoU3McApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		// InnerJoin
+	/*	// InnerJoin
 		LOGGER.info("InnerJoin");
 		List<Hotel> listaHoteles = this.hotelService.buscarHotelInnerJoin("Matrimonial");
 
@@ -72,7 +77,52 @@ public class ProyectoU3McApplication implements CommandLineRunner {
 		for (Hotel h2 : listaHotelesRight2) {
 			LOGGER.info("Hotel sin parametros: " + h2.getNombre() + " " + h2.getDireccion());
 		}
+*/
+		// InnerJoin
+				LOGGER.info("InnerJoin");
+				List<Factura> listaFacturas = this.facturaService.buscarFacturaInnerJoin(9);
 
+				for (Factura f : listaFacturas) {
+					LOGGER.info("Factura: " + f.getId() + " " + f.getNumero());
+				}
+				
+				List<Factura> listaFacturasJoin = this.facturaService.buscarFacturaInnerJoin();
+				for (Factura f1 : listaFacturasJoin) {
+					LOGGER.info("Factura sin parametros: " + f1.getId() + " " + f1.getNumero());
+				}
+				
+
+				// LEFT
+				LOGGER.info("LEFT Join");
+				List<Factura> listaFacturaLeft = this.facturaService.buscarFacturaOuterJoinLeft(9);
+
+				for (Factura f2 : listaFacturaLeft) {
+					LOGGER.info("Factura: " + f2.getId() + " " + f2.getNumero());
+				}
+				
+				List<Factura> listaFacturaLeft2 = this.facturaService.buscarFacturaOuterJoinLeft();
+				
+				for (Factura f3 : listaFacturaLeft2) {
+					LOGGER.info("Factura sin parametros: " + f3.getId() + " " + f3.getNumero());
+				}
+				
+				
+				
+				// RIGHT
+				LOGGER.info("RIGHT Join");
+				
+				List<Factura> listaFacturaRight = this.facturaService.buscarFacturaOuterJoinRight(9);
+
+				for (Factura f4 : listaFacturaRight) {
+					LOGGER.info("Factura: "  + f4.getId() + " " + f4.getNumero());
+				}
+				
+				List<Factura> listaFacturaRight2 = this.facturaService.buscarFacturaOuterJoinRight();
+
+				for (Factura f5 : listaFacturaRight2) {
+					LOGGER.info("Factura sin parametros: " + f5.getId() + " " + f5.getNumero());
+				}
+		
 	}
 
 }
