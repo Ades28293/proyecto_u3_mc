@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uce.edu.demo.repository.modelo.Hotel;
 import com.uce.edu.demo.tarea.repository.IFacturaRepository;
 import com.uce.edu.demo.tarea.repository.modelo.Factura;
 
@@ -67,5 +68,7 @@ public class FacturaServiceImpl implements IFacturaService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 }

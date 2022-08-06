@@ -2,6 +2,7 @@ package com.uce.edu.demo.tarea.service;
 
 import java.util.List;
 
+import com.uce.edu.demo.repository.modelo.Hotel;
 import com.uce.edu.demo.tarea.repository.modelo.Factura;
 
 public interface IFacturaService {
@@ -24,4 +25,5 @@ public interface IFacturaService {
 	public List<Factura> buscarFacturaOuterJoinLeft();
 
 	public List<Factura> buscarFacturaOuterFetchJoin(Integer cantidad);
+
 }

@@ -74,6 +74,12 @@ public class Habitacion {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	@Override
+	public String toString() {
+		return "Habitacion [id=" + id + ", numero=" + numero + ", piso=" + piso + ", tipo=" + tipo + ", hotel=" + hotel
+				+ "]";
+	}
 	
 	
 	

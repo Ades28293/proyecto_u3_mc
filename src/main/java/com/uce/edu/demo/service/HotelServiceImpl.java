@@ -19,6 +19,11 @@ public class HotelServiceImpl implements IHotelService {
 		// TODO Auto-generated method stub
 		return this.hotelRepository.buscarHotelInnerJoin(tipoHabitacion);
 	}
+	@Override
+	public List<Hotel> buscarHotelInnerJoin2(String tipoHabitacion) {
+		// TODO Auto-generated method stub
+		return this.hotelRepository.buscarHotelInnerJoin2(tipoHabitacion);
+	}
 	
 	@Override
 	public List<Hotel> buscarHotelInnerJoin() {
@@ -27,9 +32,9 @@ public class HotelServiceImpl implements IHotelService {
 	}
 
 	@Override
-	public List<Hotel> buscarHotelOuterJoin(String tipoHabitacion) {
+	public List<Hotel> buscarHotelJoinWhere(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return this.hotelRepository.buscarHotelOuterJoin(tipoHabitacion);
+		return this.hotelRepository.buscarHotelJoinWhere(tipoHabitacion);
 	}
 
 	@Override
@@ -62,6 +67,8 @@ public class HotelServiceImpl implements IHotelService {
 		// TODO Auto-generated method stub
 		return  this.hotelRepository.buscarHotelOuterFetchJoin(tipoHabitacion);
 	}
+
+	
 
 	
 
