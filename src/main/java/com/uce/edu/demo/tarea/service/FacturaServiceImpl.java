@@ -10,11 +10,11 @@ import com.uce.edu.demo.tarea.repository.IFacturaRepository;
 import com.uce.edu.demo.tarea.repository.modelo.Factura;
 
 @Service
-public class FacturaServiceImpl implements IFacturaService{
+public class FacturaServiceImpl implements IFacturaService {
 
 	@Autowired
 	private IFacturaRepository facturaRepository;
-	
+
 	@Override
 	public Factura consultar(Integer id) {
 		// TODO Auto-generated method stub
@@ -31,12 +31,6 @@ public class FacturaServiceImpl implements IFacturaService{
 	public List<Factura> buscarFacturaInnerJoin() {
 		// TODO Auto-generated method stub
 		return this.facturaRepository.buscarFacturaInnerJoin();
-	}
-
-	@Override
-	public List<Factura> buscarFacturaOuterJoin(Integer cantidad) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -66,9 +60,13 @@ public class FacturaServiceImpl implements IFacturaService{
 	@Override
 	public List<Factura> buscarFacturaOuterFetchJoin(Integer cantidad) {
 		// TODO Auto-generated method stub
-		return null;
+		return this.facturaRepository.buscarFacturaOuterFetchJoin(cantidad);
 	}
 
-	
+	@Override
+	public List<Factura> buscarFacturaJoinWhere(Integer cantidad) {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.buscarFacturaJoinWhere(cantidad);
+	}
 
 }
