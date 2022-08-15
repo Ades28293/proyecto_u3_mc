@@ -1,6 +1,7 @@
 package com.uce.edu.demo.tarea.repository.modelo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -20,27 +21,25 @@ import javax.persistence.Table;
 public class Factura {
 
 	@Id
-	@Column(name="fact_id")
+	@Column(name = "fact_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "fact_id_seq") // anotacion de secuencia
 	@SequenceGenerator(name = "fact_id_seq", sequenceName = "fact_id_seq", allocationSize = 1)
 	private Integer id;
-	
-	@Column(name="fact_fecha")
-	private LocalDate fecha;
-	
-	@Column(name="fact_numero")
+
+	@Column(name = "fact_fecha")
+	private LocalDateTime fecha;
+
+	@Column(name = "fact_numero")
 	private String numero;
-	
+
 	@ManyToOne
-	@JoinColumn(name="fact_clie_id")
+	@JoinColumn(name = "fact_clie_id")
 	private Cliente cliente;
-	
-	
-	@OneToMany(mappedBy = "factura",fetch = FetchType.EAGER)
+
+	@OneToMany(mappedBy = "factura", fetch = FetchType.EAGER)
 	private List<DetalleFactura> detalles;
 
-	
-	//Set y get
+	// Set y get
 	public Integer getId() {
 		return id;
 	}
@@ -49,11 +48,11 @@ public class Factura {
 		this.id = id;
 	}
 
-	public LocalDate getFecha() {
+	public LocalDateTime getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
 
@@ -80,8 +79,5 @@ public class Factura {
 	public void setDetalles(List<DetalleFactura> detalles) {
 		this.detalles = detalles;
 	}
-	
-	
-	
-	
+
 }

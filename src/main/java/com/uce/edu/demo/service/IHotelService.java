@@ -5,6 +5,8 @@ import java.util.List;
 import com.uce.edu.demo.repository.modelo.Hotel;
 
 public interface IHotelService {
+	
+	//public void insertar(Hotel hotel);
 
 	public List<Hotel> buscarHotelInnerJoin(String tipoHabitacion);
 

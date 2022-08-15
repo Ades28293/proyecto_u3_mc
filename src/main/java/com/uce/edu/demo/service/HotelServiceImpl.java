@@ -21,12 +21,13 @@ public class HotelServiceImpl implements IHotelService {
 		// TODO Auto-generated method stub
 		return this.hotelRepository.buscarHotelInnerJoin(tipoHabitacion);
 	}
+
 	@Override
 	public List<Hotel> buscarHotelInnerJoin2(String tipoHabitacion) {
 		// TODO Auto-generated method stub
 		return this.hotelRepository.buscarHotelInnerJoin2(tipoHabitacion);
 	}
-	
+
 	@Override
 	public List<Hotel> buscarHotelInnerJoin() {
 		// TODO Auto-generated method stub
@@ -42,9 +43,9 @@ public class HotelServiceImpl implements IHotelService {
 	@Override
 	public List<Hotel> buscarHotelOuterJoinRight(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return  this.hotelRepository.buscarHotelOuterJoinRight(tipoHabitacion);
+		return this.hotelRepository.buscarHotelOuterJoinRight(tipoHabitacion);
 	}
-	
+
 	@Override
 	public List<Hotel> buscarHotelOuterJoinRight() {
 		// TODO Auto-generated method stub
@@ -54,10 +55,9 @@ public class HotelServiceImpl implements IHotelService {
 	@Override
 	public List<Hotel> buscarHotelOuterJoinLeft(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return  this.hotelRepository.buscarHotelOuterJoinLeft(tipoHabitacion);
+		return this.hotelRepository.buscarHotelOuterJoinLeft(tipoHabitacion);
 	}
-	
-	
+
 	@Override
 	public List<Hotel> buscarHotelOuterJoinLeft() {
 		// TODO Auto-generated method stub
@@ -67,17 +67,16 @@ public class HotelServiceImpl implements IHotelService {
 	@Override
 	public List<Hotel> buscarHotelOuterFetchJoin(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		LOGGER.info("Transaccion activa repository: "+TransactionSynchronizationManager.isActualTransactionActive());
-		
-		return  this.hotelRepository.buscarHotelOuterFetchJoin(tipoHabitacion);
+		LOGGER.info("Transaccion activa repository: " + TransactionSynchronizationManager.isActualTransactionActive());
+
+		return this.hotelRepository.buscarHotelOuterFetchJoin(tipoHabitacion);
 	}
 
-	
-
-	
-
-	
-
-	
+	/*
+	 * @Override public void insertar(Hotel hotel) { // TODO Auto-generated method
+	 * stub this.hotelRepository.insertar(hotel);
+	 * 
+	 * }
+	 */
 
 }

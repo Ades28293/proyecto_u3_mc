@@ -14,14 +14,13 @@ import com.uce.edu.demo.repository.modelo.CuentaBancaria;
 
 @Repository
 @Transactional
-public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
-	
+public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository {
+
 	private static final Logger LOGGER = Logger.getLogger(CuentaBancariaRepositoryImpl.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	
 	@Override
 	@Transactional(value = TxType.MANDATORY)
 	public void actualizar(CuentaBancaria cuentaBancaria) {
@@ -29,17 +28,26 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository{
 		this.entityManager.merge(cuentaBancaria);
 	}
 
-
 	@Override
 	@Transactional(value = TxType.NOT_SUPPORTED)
 	public CuentaBancaria buscarPorNumero(String numeroCta) {
 		// TODO Auto-generated method stub
-		
-		LOGGER.info("Transaccion activa buscar porNumero: "+TransactionSynchronizationManager.isActualTransactionActive());
-		
-		TypedQuery<CuentaBancaria> myQuery=this.entityManager.createQuery("SELECT c FROM CuentaBancaria c WHERE c.numero= :numeroCta", CuentaBancaria.class);
+
+		LOGGER.info("Transaccion activa buscar porNumero: "
+				+ TransactionSynchronizationManager.isActualTransactionActive());
+
+		TypedQuery<CuentaBancaria> myQuery = this.entityManager
+				.createQuery("SELECT c FROM CuentaBancaria c WHERE c.numero= :numeroCta", CuentaBancaria.class);
 		myQuery.setParameter("numeroCta", numeroCta);
 		return myQuery.getSingleResult();
+	}
+
+	@Override
+	@Transactional(value = TxType.MANDATORY)
+	public void insertar(CuentaBancaria c) {
+		// TODO Auto-generated method stub
+		this.entityManager.persist(c);
+
 	}
 
 }
