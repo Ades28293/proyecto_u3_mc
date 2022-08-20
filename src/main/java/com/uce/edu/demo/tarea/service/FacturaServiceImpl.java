@@ -72,7 +72,7 @@ public class FacturaServiceImpl implements IFacturaService {
 	//
 	@Override
 	public void insertar(Factura factura) {
-		this.facturaRepository.insertar(factura);
+		//this.facturaRepository.insertar(factura);
 	}
 
 	@Override
