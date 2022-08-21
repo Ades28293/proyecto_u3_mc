@@ -101,6 +101,8 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 		myQuery.setParameter("cantidad", cantidad);
 		return myQuery.getResultList();
 	}
+	
+	///
 
 	@Override
 	public void insertar(Factura factura) {

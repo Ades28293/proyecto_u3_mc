@@ -27,7 +27,7 @@ public class Ciudadano {
 	
 	@OneToOne(mappedBy = "ciudadano")
 	private Cliente cliente;
-
+    
 	
 	//Set y Get
 	public Integer getId() {

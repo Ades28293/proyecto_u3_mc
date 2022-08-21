@@ -1,4 +1,4 @@
-package com.uce.edu.demo.tarea.repository.modelo;
+package com.uce.edu.demo.supermaxi.repository.modelo;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,8 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "producto")
+@Entity(name = "Producto1")
+@Table(name = "producto1")
 public class Producto {
 	
 	@Id
@@ -30,6 +30,9 @@ public class Producto {
 	
 	@Column(name="prod_codigo")
 	private String codigoBarras;
+	
+	@Column(name="prod_stock")
+	private Integer stock;
 	
 	
 
@@ -78,6 +81,14 @@ public class Producto {
 
 	public void setCodigoBarras(String codigoBarras) {
 		this.codigoBarras = codigoBarras;
+	}
+
+	public Integer getStock() {
+		return stock;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
 	}
 	
 	
