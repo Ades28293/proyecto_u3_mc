@@ -21,6 +21,13 @@ public class ClienteSupermaxiServiceImpl implements IClienteSupermaxiService{
 		// TODO Auto-generated method stub
 		this.clienteRepository.insertar(cliente);
 	}
-	
+
+	@Override
+	public Cliente buscarPorCedula(String cedula) {
+		// TODO Auto-generated method stub
+		return this.clienteRepository.buscarPorCedula(cedula);
+	}
+
+
 
 }

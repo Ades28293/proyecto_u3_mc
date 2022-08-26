@@ -12,14 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.supermaxi.repository.IClienteSupermaxiRepository;
-import com.uce.edu.demo.supermaxi.repository.IDetalleFacturaSupermaxiRepository;
-import com.uce.edu.demo.supermaxi.repository.IFacturaElectronicaSupermaxiRepository;
 import com.uce.edu.demo.supermaxi.repository.IFacturaSupermaxiRepository;
 import com.uce.edu.demo.supermaxi.repository.IProductoSupermaxiRepository;
-import com.uce.edu.demo.supermaxi.repository.modelo.Cliente;
 import com.uce.edu.demo.supermaxi.repository.modelo.DetalleFactura;
 import com.uce.edu.demo.supermaxi.repository.modelo.Factura;
-import com.uce.edu.demo.supermaxi.repository.modelo.FacturaElectronica;
 import com.uce.edu.demo.supermaxi.repository.modelo.Producto;
 
 @Service
@@ -34,59 +30,37 @@ public class FacturaSupermaxiServiceImpl implements IFacturaSupermaxiService {
 	@Autowired
 	private IProductoSupermaxiRepository iProductoRepository;
 
-	@Autowired
-	private IDetalleFacturaSupermaxiRepository detalleFacturaRepository;
-
-	@Autowired
-	private IFacturaElectronicaSupermaxiRepository electronicaRepository;
+	
 
 	@Override
 	@Transactional(value = TxType.REQUIRED)
-	public void insertar(String cedulaCliente, String numeroFactura, List<String> codigos) {
+	public BigDecimal insertar(String cedulaCliente, String numeroFactura, List<String> codigos) {
 		// TODO Auto-generated method stub
 
+		List<DetalleFactura> detalles = new ArrayList<>();
+		BigDecimal totalPagar = new BigDecimal(0);
 		Factura fact = new Factura();
-		fact.setFecha(LocalDateTime.now());
-
-		Cliente clie = this.clienteRepository.buscarPorCedula(cedulaCliente);
-		fact.setCliente(clie);
-
 		fact.setNumero(numeroFactura);
-
-		this.iFacturaRepository.insertar(fact);
-
-		List<DetalleFactura> detallesList = new ArrayList<DetalleFactura>();
-
-		BigDecimal total = new BigDecimal(0);
-
-		for (String produc : codigos) {
-
+		fact.setCliente(this.clienteRepository.buscarPorCedula(cedulaCliente));
+		fact.setFecha(LocalDateTime.now());
+		
+		for (String codigoProd : codigos) {
 			DetalleFactura deta = new DetalleFactura();
 			deta.setCantidad(1);
 			deta.setFactura(fact);
-			deta.setProducto(this.iProductoRepository.buscarCodigoBarras(produc));
+			Producto producto = this.iProductoRepository.buscarCodigoBarras(codigoProd);
+			deta.setProducto(producto);
 			deta.setSubtotal(deta.getProducto().getPrecio());
-
-			Producto prod = this.iProductoRepository.buscarCodigoBarras(produc);
-			prod.setStock(prod.getStock() - 1);
-
-			this.iProductoRepository.actualizar(prod);
-
-			detallesList.add(deta);
-			this.detalleFacturaRepository.insertar(deta);
-
-			total = total.add(deta.getSubtotal());
+			totalPagar = totalPagar.add(deta.getSubtotal());
+			producto.setStock(producto.getStock() - deta.getCantidad());
+			this.iProductoRepository.actualizar(producto);
+			detalles.add(deta);
+			//this.detalleRepository.insertar(deta);
 
 		}
-		fact.setDetalles(detallesList);
-
-		FacturaElectronica fael = new FacturaElectronica();
-		fael.setFechaActual(LocalDateTime.now());
-		fael.setMontoFactura(total);
-		fael.setNumero(numeroFactura);
-		fael.setNumeroItems(detallesList.size());
-
-		this.electronicaRepository.insertar(fael);
+		fact.setDetalles(detalles);
+		this.iFacturaRepository.insertar(fact);
+		return totalPagar;
 
 	}
 

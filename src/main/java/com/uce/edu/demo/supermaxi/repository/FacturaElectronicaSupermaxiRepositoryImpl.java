@@ -16,19 +16,12 @@ public class FacturaElectronicaSupermaxiRepositoryImpl implements IFacturaElectr
 	private EntityManager entityManager;
 
 	@Override
-	@Transactional(value = TxType.REQUIRES_NEW)
+	@Transactional(value = TxType.MANDATORY)
 	public void insertar(FacturaElectronica facturaElectronica) {
 		// TODO Auto-generated method stub
-		try {
-			this.entityManager.persist(facturaElectronica);
-		}catch (Exception e) {
-			// TODO: handle exception
-			
-		}
-		
-		
-		
-		
+
+		this.entityManager.persist(facturaElectronica);
+
 	}
 
 }
