@@ -26,7 +26,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 
 	@Override
 	@Transactional(value = TxType.REQUIRED)
-	public void realizarTransferencia(String numeroOrigen, String numeroDestino, BigDecimal monto) {
+	public void realizarTransferencia(String numeroOrigen, String numeroDestino, BigDecimal monto) {//begin
 
 		// TODO Auto-generated method stub
 		// 0.buscar cuenta origen (obtener el saldo)
@@ -55,13 +55,11 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 			throw new RuntimeException();
 		}
 		
-		
 	/*	if(ctaOrigen.getTipo().equals("Ahorros")) {
 			throw new RuntimeException();
 		}
 		*/
-
-	}
+	}//commit
 
 	@Override
 	@Transactional(value = TxType.REQUIRED)
